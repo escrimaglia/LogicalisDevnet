@@ -1,0 +1,105 @@
+# Service Model NSO Service ACL. NEP@L
+# By Ed Scrimaglia
+#
+# project_path:
+#   local: /Users/scrimaglia/ansible/Playbooks/NSO/NSO_ACL
+#   jenkins: /var/lib/jenkins/workspace/NSO_SERVICE_ACL 
+# py_extensions_path:
+#   local: /Users/scrimaglia/ansible/extensions
+#   jenkins: /etc/python/extensions
+---
+Service_model:
+  Servicio: Cisco NSO-ACL-SERVICE
+  Parametros_Env:
+    project_path: /var/lib/jenkins/workspace/NSO_SERVICE_ACL
+    py_extensions_path: /etc/python/extensions
+    hosts: localhost
+    state: present
+    debug: no
+  Devices:
+    names:
+      - name: NEPAL_IOSXRv_P1
+        address: 10.54.154.132
+        authgroup: default
+        admin_state: unlocked
+        port: 22
+        device_type: 
+          cli:
+            ned_id: "cisco-iosxr-cli-7.18:cisco-iosxr-cli-7.18"
+            protocol: "ssh"
+      - name: NEPAL_IOSXRv_P2
+        address: 10.54.154.133
+        authgroup: default
+        admin_state: unlocked
+        port: 22
+        device_type: 
+          cli:
+            ned_id: "cisco-iosxr-cli-7.18:cisco-iosxr-cli-7.18"
+            protocol: "ssh"
+      - name: NEPAL_ASR9Kv_PE2
+        address: 10.54.154.135
+        authgroup: default
+        admin_state: unlocked
+        port: 22
+        device_type: 
+          cli:
+            ned_id: "cisco-iosxr-cli-7.18:cisco-iosxr-cli-7.18"
+            protocol: "ssh"
+      - name: NEPAL_ASR9Kv_PE1
+        address: 10.54.154.134
+        authgroup: default
+        admin_state: unlocked
+        port: 22
+        device_type: 
+          cli:
+            ned_id: "cisco-iosxr-cli-7.18:cisco-iosxr-cli-7.18"
+            protocol: "ssh"
+      - name: NEPAL_ASR9Kv_PE3
+        address: 10.54.154.136
+        authgroup: default
+        admin_state: unlocked
+        port: 22
+        device_type: 
+          cli:
+            ned_id: "cisco-iosxr-cli-7.18:cisco-iosxr-cli-7.18"
+            protocol: "ssh"
+  Template:
+    names:
+      - name: nepal-template
+        snmp_acl: nepal-acl2
+        vty_acl: nepal-acl1
+        snmp_community: 
+          - community1
+          - community2
+  ACL:
+    names:
+      - name: nepal-acl1
+        hosts:
+          - 10.10.10.10
+          - 10.10.10.20
+        net:
+          - ip: 172.16.1.0 
+            mask: 0.0.0.255
+          - ip: 172.16.2.0 
+            mask: 0.0.0.255
+      - name: nepal-acl2
+        hosts:
+          - 10.10.10.10
+          - 10.10.10.20
+          - 10.10.10.30
+        net:
+          - ip: 172.16.1.0 
+            mask: 0.0.0.255
+          - ip: 172.16.3.0 
+            mask: 0.0.0.255
+  Bindings:
+    Template_Devices:
+      - device: NEPAL_IOSXRv_P1
+        template: nepal-template
+      - device: NEPAL_IOSXRv_P2
+        template: nepal-template
+      - device: NEPAL_ASR9Kv_PE2
+        template: nepal-template
+      - device: NEPAL_ASR9Kv_PE1
+        template: nepal-template
+        

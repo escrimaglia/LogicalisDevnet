@@ -1,0 +1,57 @@
+# Create new template in NSO ACL Service
+# By Ed Scrimaglia
+---
+- name: "*** Config Service Template ACL on NSO ***"
+  hosts: localhost
+  gather_facts: no
+
+  vars_files:
+    - ../Data_Model/Service_Model.yaml
+    - ../vars_files/nso_vars.yaml
+
+  tasks:
+    - name: Set Facts
+      set_fact:
+        var_service_model: "{{Service_model}}"
+        state: "{{Service_model.Parametros_Env.state}}"
+
+    - name: Config Template
+      nso_config:
+        url: "{{nso_url}}"
+        username: "{{nso_user}}"
+        password: "{{nso_password}}"
+        data:
+          tailf-ncs:services/mgmt-access-template:
+            - name: "{{item.name}}"
+              snmp-acl: "{{item.snmp_acl}}"
+              vty-acl: "{{item.vty_acl}}"
+              snmp-community:
+                - community1
+                - community2
+              __state: "{{state}}"
+      register: salida        
+      loop:
+        "{{var_service_model.Template.names}}"
+      when: state == "present"
+      
+    - debug:
+        var: salida
+      when: var_service_model.Parametros_Env.debug == true
+
+    - name: Delete Template
+      nso_config:
+        url: "{{nso_url}}"
+        username: "{{nso_user}}"
+        password: "{{nso_password}}"
+        data:
+          tailf-ncs:services/mgmt-access-template:
+            - name: "{{item.name}}"
+              __state: "{{state}}"
+      register: salida
+      loop:
+        "{{var_service_model.Template.names}}"
+      when: state == "absent"
+      
+    - debug:
+        var: salida
+      when: var_service_model.Parametros_Env.debug == true

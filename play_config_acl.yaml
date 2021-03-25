@@ -1,0 +1,61 @@
+# Create ACL SERVICE on 
+# By Ed Scrimaglia
+---
+- name: "*** Config Service ACL on NSO ***"
+  hosts: localhost
+  gather_facts: no
+
+  vars_files:
+    - ../Data_Model/Service_Model.yaml
+    - ../vars_files/nso_vars.yaml
+
+  tasks:
+    - name: Set Facts
+      set_fact:
+        var_service_model: "{{Service_model}}"
+        state: "{{Service_model.Parametros_Env.state}}"
+
+    - name: Config ACLs
+      nso_config:
+        url: "{{nso_url}}"
+        username: "{{nso_user}}"
+        password: "{{nso_password}}"
+        data:
+          tailf-ncs:services/mgmt-access-acl:
+            - name: "{{item.name}}"
+              host:
+                "{{item.hosts}}"
+              net:
+                "{{item.net}}"
+              __state: "{{state}}"
+      register: salida
+      loop:
+         "{{var_service_model.ACL.names}}"
+      when: state == "present"
+      
+      
+    - debug:
+        var: salida
+      when: var_service_model.Parametros_Env.debug == true
+
+    - name: Delete ACLs
+      nso_config:
+        url: "{{nso_url}}"
+        username: "{{nso_user}}"
+        password: "{{nso_password}}"
+        data:
+          tailf-ncs:services/mgmt-access-acl:
+            - name: "{{item.name}}"
+              host:
+                "{{item.hosts}}"
+              # net:
+              #   "{{item.net}}"
+              __state: "{{state}}"
+      register: salida_delete
+      loop:
+        "{{var_service_model.ACL.names}}"
+      when: state == "absent"
+      
+    - debug:
+        var: salida_delete
+      when: var_service_model.Parametros_Env.debug == true
