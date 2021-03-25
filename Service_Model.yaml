@@ -1,12 +1,6 @@
 # Service Model NSO Service ACL. NEP@L
 # By Ed Scrimaglia
 #
-# project_path:
-#   local: /Users/scrimaglia/ansible/Playbooks/NSO/NSO_ACL
-#   jenkins: /var/lib/jenkins/workspace/NSO_SERVICE_ACL 
-# py_extensions_path:
-#   local: /Users/scrimaglia/ansible/extensions
-#   jenkins: /etc/python/extensions
 ---
 Service_model:
   Servicio: Cisco NSO-ACL-SERVICE
@@ -19,7 +13,7 @@ Service_model:
   Devices:
     names:
       - name: NEPAL_IOSXRv_P1
-        address: 10.54.154.132
+        address: 10.54.X.X
         authgroup: default
         admin_state: unlocked
         port: 22
@@ -28,7 +22,7 @@ Service_model:
             ned_id: "cisco-iosxr-cli-7.18:cisco-iosxr-cli-7.18"
             protocol: "ssh"
       - name: NEPAL_IOSXRv_P2
-        address: 10.54.154.133
+        address: 10.54.X.X
         authgroup: default
         admin_state: unlocked
         port: 22
@@ -37,7 +31,7 @@ Service_model:
             ned_id: "cisco-iosxr-cli-7.18:cisco-iosxr-cli-7.18"
             protocol: "ssh"
       - name: NEPAL_ASR9Kv_PE2
-        address: 10.54.154.135
+        address: 10.54.X.X
         authgroup: default
         admin_state: unlocked
         port: 22
@@ -46,7 +40,7 @@ Service_model:
             ned_id: "cisco-iosxr-cli-7.18:cisco-iosxr-cli-7.18"
             protocol: "ssh"
       - name: NEPAL_ASR9Kv_PE1
-        address: 10.54.154.134
+        address: 10.54.X.X
         authgroup: default
         admin_state: unlocked
         port: 22
@@ -55,7 +49,7 @@ Service_model:
             ned_id: "cisco-iosxr-cli-7.18:cisco-iosxr-cli-7.18"
             protocol: "ssh"
       - name: NEPAL_ASR9Kv_PE3
-        address: 10.54.154.136
+        address: 10.54.X.X
         authgroup: default
         admin_state: unlocked
         port: 22
