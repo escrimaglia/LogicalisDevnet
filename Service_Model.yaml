@@ -1,6 +1,5 @@
 # Service Model NSO Service ACL. NEP@L
 # By Ed Scrimaglia
-#
 ---
 Service_model:
   Servicio: Cisco NSO-ACL-SERVICE
