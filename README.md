@@ -2,7 +2,7 @@
 
 ## NEP@L & NSO Integration
 
-## Service: Deployment ACLs
+## NSO Service: Deployment ACLs
   
 In order to provide NSO with two highly required or demanded features like CI/CD nd workflow manager, we made the decision to integrate NEP@L and NSO using Ansible as a DSL (Domain specfic language) and NSO APIs. While NSO remain te tools that access the network, NEP@L allow NSO user and developers to have CI/CD pipelines and ejecute Uses Case via the workflow manager interface.
 
