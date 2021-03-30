@@ -1,4 +1,5 @@
-# Create ACL SERVICE on 
+# Deployment ACLs SERVICE
+# Create or Delete ACls using NSO_CONFIG API
 # By Ed Scrimaglia
 ---
 - name: "*** Config Service ACL on NSO ***"

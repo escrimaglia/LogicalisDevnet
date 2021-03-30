@@ -1,4 +1,5 @@
-# Service Model NSO Service ACL. NEP@L
+# Service Model Deployment ACLs Service, NSO & NEP@L integration
+# Source of True file
 # By Ed Scrimaglia
 ---
 Service_model:

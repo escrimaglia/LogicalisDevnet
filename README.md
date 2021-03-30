@@ -1,11 +1,14 @@
 # LogicalisDevnet  
 
-## Deployment ACLs. Integración de NSO y NEP@L  
+## NEP@L & NSO Integration
+
+## Service: Deployment ACLs
   
-NSO es el motor de automatización que impacta la configuraciones en los equipos.  
-NEP@L aporta o complementa NSO con las facilidades de workflowmanager y CI/CD  
+In order to provide NSO with two highly required or demanded features like CI/CD nd workflow manager, we made the decision to integrate NEP@L and NSO using Ansible as a DSL (Domain specfic language) and NSO APIs. While NSO remain te tools that access the network, NEP@L allows NSO user and developers to have CI/CD pipelines and ejecute Uses Case via the workflow manager interface.
+
+Below, three files that are part of the mentioned service snd shows de integration
 
 Files  
-Service Model.yaml: Source of True del servicio  
-play_config_acl.yaml: playbook que usa la API de NSO para configurar las ACL  
-play_config_template_acl.yaml: playbook que usa la API de NSO para crear el template de las ACL  
+Service Model.yaml: Source of True of the service
+play_config_template_acl.yaml: playbook that configure into NSO the templates defined in the Source of True  
+play_config_acl.yaml: playbook that tells NSO to impact or configure the devices with template previously defined in NSO

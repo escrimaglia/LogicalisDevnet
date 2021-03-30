@@ -1,4 +1,5 @@
-# Create new template in NSO ACL Service
+# Deployment ACLs SERVICE
+# Create and Delete ACLs template in NSO using NSO_CONFIG API
 # By Ed Scrimaglia
 ---
 - name: "*** Config Service Template ACL on NSO ***"
