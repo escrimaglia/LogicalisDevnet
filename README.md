@@ -9,6 +9,6 @@ In order to provide NSO with two highly required or demanded features like CI/CD
 Below, three files that are part of the mentioned service snd shows de integration
 
 Files  
-Service Model.yaml: Source of True of the service
+Service Model.yaml: Source of True of the service  
 play_config_template_acl.yaml: playbook that configure into NSO the templates defined in the Source of True  
 play_config_acl.yaml: playbook that tells NSO to impact or configure the devices with template previously defined in NSO
