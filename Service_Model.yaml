@@ -96,4 +96,3 @@ Service_model:
         template: nepal-template
       - device: NEPAL_ASR9Kv_PE1
         template: nepal-template
-        
